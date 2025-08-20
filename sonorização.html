@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Planta Baixa - Som 10x25</title>
+</head>
+<body>
+<h2>Planta Baixa e Distribuição de Caixas de Som</h2>
+<svg width="1000" height="500" viewBox="0 0 10 25" style="border:1px solid black; background-color:#f9f9f9;">
+  <!-- Sala -->
+  <rect x="0" y="0" width="10" height="25" fill="none" stroke="black" stroke-width="0.1"/>
+  
+  <!-- Palco -->
+  <rect x="0" y="0" width="10" height="3" fill="lightgrey"/>
+  <text x="5" y="1.5" font-size="0.5" text-anchor="middle" alignment-baseline="middle" font-weight="bold">ALTAR</text>
+  
+  <!-- PAs principais -->
+  <circle cx="1" cy="3" r="0.3" fill="blue"/>
+  <text x="1" y="3.5" font-size="0.3" text-anchor="middle">L PA</text>
+  
+  <circle cx="9" cy="3" r="0.3" fill="blue"/>
+  <text x="9" y="3.5" font-size="0.3" text-anchor="middle">R PA</text>
+  
+  <!-- Subwoofers -->
+  <circle cx="3" cy="1" r="0.3" fill="red"/>
+  <circle cx="7" cy="1" r="0.3" fill="red"/>
+  
+  <!-- Delays -->
+  <circle cx="2" cy="15" r="0.3" fill="green"/>
+  <text x="2" y="15.5" font-size="0.3" text-anchor="middle">Delay L</text>
+  
+  <circle cx="8" cy="15" r="0.3" fill="green"/>
+  <text x="8" y="15.5" font-size="0.3" text-anchor="middle">Delay R</text>
+  
+  <!-- Fundo do salão -->
+  <text x="5" y="24.5" font-size="0.4" text-anchor="middle" font-weight="bold">FUNDO DO SALÃO</text>
+</svg>
+
+<p>Legenda:</p>
+<ul>
+<li><span style="color:blue; font-weight:bold;">●</span> PAs principais</li>
+<li><span style="color:red; font-weight:bold;">●</span> Subwoofers</li>
+<li><span style="color:green; font-weight:bold;">●</span> Delay/fill speakers</li>
+</ul>
+</body>
+</html>
