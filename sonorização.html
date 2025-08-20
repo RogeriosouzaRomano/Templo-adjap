@@ -1,48 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>Planta Baixa - Som 10x25</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Planta Som 10x25 — Cotas</title>
+<style>
+  body{font-family:Arial,Helvetica,sans-serif; padding:18px; background:#f4f6f9; color:#213042;}
+  h2{margin:0 0 8px}
+  p.small{font-size:13px; color:#445;}
+  .wrap{max-width:1000px; margin:10px auto;}
+  .legend{margin-top:8px; font-size:13px}
+  .legend span{display:inline-block;margin-right:14px}
+  .dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .blue{background:#0b67c2} .red{background:#d6453b} .green{background:#2a9d35} .orange{background:#e67e22} .gray{background:#c7c7c7}
+  /* small note */
+  .note{margin-top:10px;font-size:13px;color:#334}
+  /* responsive svg container */
+  .svg-container{width:100%; border:1px solid #cbd5df; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+</style>
 </head>
 <body>
-<h2>Templo Adjap Distribuição de Caixas de Som</h2>
-<svg width="100%" height="500" viewBox="0 0 10 25" style="border:1px solid black; background-color:#f9f9f9;margin:auto;">
-  <!-- Sala -->
-  <rect x="0" y="0" width="10" height="25" fill="none" stroke="black" stroke-width="0.1"/>
-  
-  <!-- Palco -->
-  <rect x="0" y="0" width="10" height="3" fill="lightgrey"/>
-  <text x="5" y="1.5" font-size="0.5" text-anchor="middle" alignment-baseline="middle" font-weight="bold">ALTAR</text>
-  
-  <!-- PAs principais -->
-  <circle cx="1" cy="3" r="0.3" fill="blue"/>
-  <text x="1" y="3.5" font-size="0.3" text-anchor="middle">L PA</text>
-  
-  <circle cx="9" cy="3" r="0.3" fill="blue"/>
-  <text x="9" y="3.5" font-size="0.3" text-anchor="middle">R PA</text>
-  
-  <!-- Subwoofers -->
-  <circle cx="3" cy="1" r="0.3" fill="red"/>
-  <circle cx="7" cy="1" r="0.3" fill="red"/>
-  
-  <!-- Delays -->
-  <circle cx="2" cy="15" r="0.3" fill="green"/>
-  <text x="2" y="15.5" font-size="0.3" text-anchor="middle">Delay L</text>
-  
-  <circle cx="8" cy="15" r="0.3" fill="green"/>
-  <text x="8" y="15.5" font-size="0.3" text-anchor="middle">Delay R</text>
-  
-  <!-- Fundo do salão -->
-  <text x="5" y="24.5" font-size="0.4" text-anchor="middle" font-weight="bold">FUNDO DO SALÃO</text>
-</svg>
+  <div class="wrap">
+    <h2>Planta baixa — Som 10 × 25 m (com cotas)</h2>
+    <p class="small">Escala visual do SVG: 1 m = 1 unidade no viewBox (não é escala gráfica para impressão — é para posicionamento e leitura rápida).</p>
 
-<p>Legenda:</p>
-<ul>
-<li><span style="color:blue; font-weight:bold;">●</span> PAs principais</li>
-<li><span style="color:red; font-weight:bold;">●</span> Subwoofers</li>
-<li><span style="color:green; font-weight:bold;">●</span> Delay/fill speakers</li>
-</ul>
+    <div class="svg-container">
+      <svg viewBox="0 0 10 25" width="100%" height="700" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <!-- Sala outline -->
+        <rect x="0" y="0" width="10" height="25" fill="none" stroke="#213042" stroke-width="0.03"/>
+
+        <!-- ALtar / Palco area (0..3m) -->
+        <rect x="0" y="0" width="10" height="3" fill="#e9e6e2" stroke="#c7b29a" stroke-width="0.02"/>
+        <text x="5" y="1.45" font-size="0.35" text-anchor="middle" fill="#8a4f00" font-weight="700">ALTAR / PALCO (0–3 m)</text>
+
+        <!-- Retornos de palco (dentro do altar) -->
+        <circle cx="3" cy="1.4" r="0.18" fill="#e67e22" />
+        <text x="3" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret L</text>
+
+        <circle cx="5" cy="1.4" r="0.18" fill="#e67e22" />
+        <text x="5" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret C</text>
+
+        <circle cx="7" cy="1.4" r="0.18" fill="#e67e22" />
+        <text x="7" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret R</text>
+
+        <!-- PAs principais (front, levemente fora do palco) -->
+        <circle cx="1" cy="3" r="0.22" fill="#0b67c2" />
+        <text x="1" y="3.6" font-size="0.22" text-anchor="middle" fill="#0b67c2">L PA</text>
+
+        <circle cx="9" cy="3" r="0.22" fill="#0b67c2" />
+        <text x="9" y="3.6" font-size="0.22" text-anchor="middle" fill="#0b67c2">R PA</text>
+
+        <!-- Subwoofers em frente ao altar (0.3 m fora do palco) -->
+        <circle cx="3" cy="3.3" r="0.28" fill="#d6453b" />
+        <text x="3" y="3.95" font-size="0.22" text-anchor="middle" fill="#a12b22">Sub L</text>
+
+        <circle cx="7" cy="3.3" r="0.28" fill="#d6453b" />
+        <text x="7" y="3.95" font-size="0.22" text-anchor="middle" fill="#a12b22">Sub R</text>
+
+        <!-- Delays (posicionados a 15 m do front) -->
+        <circle cx="2" cy="15" r="0.28" fill="#2a9d35" />
+        <text x="2" y="15.7" font-size="0.22" text-anchor="middle" fill="#1b5e20">Delay L (15 m)</text>
+
+        <circle cx="8" cy="15" r="0.28" fill="#2a9d35" />
+        <text x="8" y="15.7" font-size="0.22" text-anchor="middle" fill="#1b5e20">Delay R (15 m)</text>
+
+        <!-- Fundo -->
+        <text x="5" y="24.6" font-size="0.28" text-anchor="middle" fill="#213042" font-weight="700">FUNDO DO SALÃO (25 m)</text>
+
+        <!-- DIMENSION LINES (vertical) -->
+        <!-- Stage depth 3m -->
+        <line x1="10.4" y1="0" x2="10.4" y2="3" stroke="#333" stroke-width="0.01" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="10.9" y="1.5" font-size="0.25" fill="#333" text-anchor="start">3 m (palco)</text>
+
+        <!-- Sub offset from stage edge: front edge y=3 to sub center y=3.3 -->
+        <line x1="10.4" y1="3" x2="10.4" y2="3.3" stroke="#666" stroke-width="0.008" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="10.9" y="3.15" font-size="0.22" fill="#666" text-anchor="start">0.3 m (sub offset)</text>
+
+        <!-- Distance front -> delays (15 m) -->
+        <line x1="10.4" y1="0" x2="10.4" y2="15" stroke="#333" stroke-width="0.01" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="10.9" y="7.6" font-size="0.25" fill="#333" text-anchor="start">15 m (front → delay)</text>
+
+        <!-- Delay -> fundo (10 m) -->
+        <line x1="-0.8" y1="15" x2="-0.8" y2="25" stroke="#333" stroke-width="0.01" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="-1.2" y="20.4" font-size="0.25" fill="#333" text-anchor="end">10 m (delay → fundo)</text>
+
+        <!-- Horizontal width 10 m -->
+        <line x1="0" y1="25.4" x2="10" y2="25.4" stroke="#333" stroke-width="0.01" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="5" y="25.9" font-size="0.26" fill="#333" text-anchor="middle">Largura: 10 m</text>
+
+        <!-- Sub spacing (3->7 = 4 m) -->
+        <line x1="3" y1="3.85" x2="7" y2="3.85" stroke="#666" stroke-width="0.008" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="5" y="4.1" font-size="0.24" fill="#666" text-anchor="middle">4.0 m (entre subs)</text>
+
+        <!-- Sub to delay (approx) vertical difference: 3.3 -> 15 = 11.7m -->
+        <line x1="7.2" y1="3.3" x2="7.2" y2="15" stroke="#666" stroke-width="0.008" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="7.45" y="9.3" font-size="0.22" fill="#666">11.7 m (sub → delay)</text>
+
+        <!-- PA lateral distance from walls (1 m) -->
+        <line x1="0.05" y1="3.6" x2="1" y2="3.6" stroke="#666" stroke-width="0.008" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="0.6" y="3.95" font-size="0.22" fill="#666" text-anchor="middle">1.0 m</text>
+
+        <line x1="9" y1="3.6" x2="9.95" y2="3.6" stroke="#666" stroke-width="0.008" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="9.4" y="3.95" font-size="0.22" fill="#666" text-anchor="middle">1.0 m</text>
+
+        <!-- Markers definition for arrows -->
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#333" />
+          </marker>
+        </defs>
+
+        <!-- faint grid to ease reading (every 5 m horizontal line) -->
+        <g stroke="#dbe6ef" stroke-width="0.005">
+          <line x1="0" y1="5" x2="10" y2="5" />
+          <line x1="0" y1="10" x2="10" y2="10" />
+          <line x1="0" y1="15" x2="10" y2="15" />
+          <line x1="0" y1="20" x2="10" y2="20" />
+        </g>
+
+      </svg>
+    </div>
+
+    <div class="legend">
+      <span><i class="dot blue"></i>PA principal</span>
+      <span><i class="dot red"></i>Subwoofer</span>
+      <span><i class="dot orange"></i>Retorno de palco</span>
+      <span><i class="dot green"></i>Delay / Fill</span>
+      <span><i class="dot gray"></i>Altar / Palco</span>
+    </div>
+
+    <p class="note">
+      Notas rápidas:
+      <ul>
+        <li>Palco/altar: 0–3 m de profundidade (do front do salão).</li>
+        <li>Subs posicionados ~0,3 m à frente da borda do palco (para melhor integração com PAs e para evitar bloqueio visual).</li>
+        <li>Distância front→delays: 15 m (adjustável conforme medição in loco).</li>
+        <li>Spacing entre subs: 4 m (aumenta uniformidade dos graves na largura do salão).</li>
+        <li>PAs aproximadas a 1 m das paredes laterais (ajustar na prática para evitar reflexões). </li>
+        <li>Ajustes finos (delay_ms, EQ e ganho) devem ser feitos com medidor (REW/Smaart) e ouvindo no local.</li>
+      </ul>
+    </p>
+  </div>
 </body>
-    </html>
-    
+</html>
