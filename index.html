@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Distribuição de Luminárias - Templo Adjap</title>
+  <!-- Meta tag para zoom inicial no celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <style>
     :root{ --glow: 0.85; }
 
@@ -13,22 +15,24 @@
       flex-direction: column;
       align-items: center;
       padding: 20px;
+      margin: 0;
     }
-    h1 {
+    h1, h3 {
       color: #2c3e50;
       margin: 6px 0;
       text-align: center;
-      font-size:20px;
     }
+    h1 { font-size: 20px; }
+    h3 { font-size: 16px; }
 
+    /* Controles */
     .controls{
       display:flex;
       gap:10px;
       margin: 12px 0 16px 0;
+      margin-top:30px;
       flex-wrap: wrap;
       justify-content: center;
-
-      margin-top:30px;
     }
     .btn{
       border:0;
@@ -46,6 +50,7 @@
       background:transparent; color:#2c3e50; border:2px solid #2c3e50;
     }
 
+    /* Planta */
     .container {
       position: relative;
       display: flex;
@@ -54,13 +59,14 @@
     .planta {
       position: relative;
       width: 200px;
-      height: 500px;
+      max-width: 320px; /* tamanho máximo no desktop */
+      aspect-ratio: 2 / 5;
       border: 3px solid #2c3e50;
       background: #fff;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(8, 1fr);
-      gap:4px;
+      gap: 4px;
     }
 
     .lumi {
@@ -82,7 +88,6 @@
       box-shadow: none;
     }
     .lumi:hover{ transform: scale(1.1); }
-
     .lumi.on{
       background: radial-gradient(circle, #ffe172 40%, #f1c40f 80%);
       border-color:#b8860b;
@@ -116,11 +121,12 @@
       font-size: 12px;
     }
 
+    /* Cotas */
     .cota-vertical {
       position: absolute;
-      left: -40px;
+      left: -35px;
       top: 0;
-      height: 500px;
+      height: 100%;
       border-left: 2px dashed #7f8c8d;
       display: flex;
       flex-direction: column;
@@ -130,17 +136,13 @@
       color: #2c3e50;
       pointer-events:none;
     }
-    .cota-vertical span {
-      background: #ecf0f1;
-      padding: 2px 4px;
-      border-radius: 3px;
-    }
+    .cota-vertical span { background: #ecf0f1; padding: 2px 4px; border-radius: 3px; }
 
     .cota-horizontal {
       position: absolute;
-      bottom: -25px;
+      bottom: -30px;
       left: 0;
-      width: 200px;
+      width: 100%;
       border-top: 2px dashed #7f8c8d;
       display: flex;
       justify-content: space-between;
@@ -148,19 +150,17 @@
       color: #2c3e50;
       pointer-events:none;
     }
-    .cota-horizontal span {
-      background: #ecf0f1;
-      padding: 2px 4px;
-      border-radius: 3px;
-    }
+    .cota-horizontal span { background: #ecf0f1; padding: 2px 4px; border-radius: 3px; }
 
-    @media (max-width: 420px){
-      .planta{ transform: scale(.9); transform-origin: top center; }
+    /* Responsivo */
+    @media(max-width: 420px){
+      body { padding: 10px; }
+      .controls { flex-direction: column; gap: 6px; }
+      .planta { max-width: 100%; } /* ocupa quase toda a tela no celular */
     }
   </style>
 </head>
 <body>
-    
   <h1>Templo Adjap — Distribuição de Luminárias</h1>
   <h3>Iluminação do Templo 10×25×6m</h3>
   <p><b>Lâmpadas:</b> 24 LED de 36W (~3.600 lm cada)</p>
@@ -193,7 +193,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="controls">
     <button id="toggleAll" class="btn">Acender/Apagar tudo</button>
     <button id="wave" class="btn secondary">Efeito onda</button>
@@ -209,7 +209,6 @@
     const resetBtn = document.getElementById('reset');
 
     function toggleLight(el){ el.classList.toggle('on'); }
-
     function setAll(stateOn){ lights.forEach(l => l.classList.toggle('on', stateOn)); }
 
     let allOn = false;
@@ -220,19 +219,20 @@
     });
 
     waveBtn.addEventListener('click', async () => {
-      setAll(false); allOn = false; toggleBtn.textContent = 'Acender tudo';
-      for (let i = 0; i < lights.length; i++){
+      setAll(false); allOn=false; toggleBtn.textContent='Acender tudo';
+      for (let i=0;i<lights.length;i++){
         lights[i].classList.add('on');
-        await new Promise(r => setTimeout(r, 120));
+        await new Promise(r=>setTimeout(r,120));
       }
     });
 
-    resetBtn.addEventListener('click', () => { setAll(false); allOn = false; toggleBtn.textContent = 'Acender tudo'; });
+    resetBtn.addEventListener('click', () => { setAll(false); allOn=false; toggleBtn.textContent='Acender tudo'; });
 
     lights.forEach(l => {
-      l.addEventListener('click', () => toggleLight(l));
-      l.addEventListener('keydown', (e) => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleLight(l); } });
+      l.addEventListener('click',()=>toggleLight(l));
+      l.addEventListener('keydown',(e)=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggleLight(l); } });
     });
   </script>
 </body>
-</html>
+                                                </html>
+                                                
