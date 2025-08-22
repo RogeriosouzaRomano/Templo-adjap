@@ -21,7 +21,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h2> ADJAP PROJETO<BR> Som 10 × 25 m (com cotas)</h2>
+    <h2> ADJAP Planta baixa — Som 10 × 25 m (com cotas)</h2>
     <p class="small">Escala visual do SVG: 1 m = 1 unidade no viewBox (não é escala gráfica para impressão — é para posicionamento e leitura rápida).</p>
 
     <div class="svg-container">
@@ -31,7 +31,7 @@
 
         <!-- ALtar / Palco area (0..3m) -->
         <rect x="0" y="0" width="10" height="3" fill="#e9e6e2" stroke="#c7b29a" stroke-width="0.02"/>
-        <text x="5" y="0.5" font-size="0.35" text-anchor="middle" fill="#8a4f00" font-weight="700">ALTAR (0–3 m)</text>
+        <text x="5" y=".5" font-size="0.35" text-anchor="middle" fill="#8a4f00" font-weight="700">ALTAR  (0–3 m)</text>
 
         <!-- Retornos de palco (dentro do altar) -->
         <circle cx="3" cy="1.4" r="0.18" fill="#e67e22" />
@@ -141,5 +141,144 @@
       </ul>
     </p>
   </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulação de Som ADJAP — Templo 10x25</title>
+<style>
+  body { font-family: Arial, sans-serif; text-align: center; background:#f4f6f9; color:#213042; padding:15px; }
+  h2 { margin-bottom:5px; }
+  svg { border:1px solid #cbd5df; background:#fff; display:block; margin:auto; }
+  button { margin:5px; padding:8px 14px; cursor:pointer; border:none; border-radius:6px; background:#2c3e50; color:#fff; }
+  button:hover { background:#16a085; }
+  .legend { margin-top:10px; font-size:13px; }
+  .legend span { display:inline-block; margin-right:14px; }
+  .dot { display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  .blue{background:#0b67c2} .red{background:#d6453b} .green{background:#2a9d35} .orange{background:#e67e22} .gray{background:#c7c7c7}
+</style>
+</head>
+<body>
+
+<h2>Simulação de Distribuição Sonora — Templo 10x25</h2>
+
+
+<svg id="planta" viewBox="0 0 10 25" width="100%" height="700">
+  <!-- Sala -->
+  <rect x="0" y="0" width="10" height="25" fill="none" stroke="#213042" stroke-width="0.03"/>
+
+  <!-- Altar -->
+  <rect x="0" y="0" width="10" height="3" fill="#e9e6e2" stroke="#c7b29a" stroke-width="0.02"/>
+  <text x="5" y="0.5" font-size="0.35" text-anchor="middle" fill="#8a4f00" font-weight="700">ALTAR (0–3 m)</text>
+
+  <!-- Retornos -->
+  <circle cx="3" cy="1.4" r="0.18" fill="#e67e22" />
+  <text x="3" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret L</text>
+
+  <circle cx="5" cy="1.4" r="0.18" fill="#e67e22" />
+  <text x="5" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret C</text>
+
+  <circle cx="7" cy="1.4" r="0.18" fill="#e67e22" />
+  <text x="7" y="1.9" font-size="0.22" text-anchor="middle" fill="#333">Ret R</text>
+
+  <!-- PAs principais -->
+  <circle class="pa source" cx="1" cy="3" r="0.22" fill="#0b67c2" />
+  <text x="1" y="3.6" font-size="0.22" text-anchor="middle" fill="#0b67c2">L PA</text>
+
+  <circle class="pa source" cx="9" cy="3" r="0.22" fill="#0b67c2" />
+  <text x="9" y="3.6" font-size="0.22" text-anchor="middle" fill="#0b67c2">R PA</text>
+
+  <!-- Subwoofers -->
+  <circle class="sub source" cx="3" cy="3.3" r="0.28" fill="#d6453b" />
+  <text x="3" y="3.95" font-size="0.22" text-anchor="middle" fill="#a12b22">Sub L</text>
+
+  <circle class="sub source" cx="7" cy="3.3" r="0.28" fill="#d6453b" />
+  <text x="7" y="3.95" font-size="0.22" text-anchor="middle" fill="#a12b22">Sub R</text>
+
+  <!-- Delays -->
+  <circle class="delay source" cx="2" cy="15" r="0.28" fill="#2a9d35" />
+  <text x="2" y="15.7" font-size="0.22" text-anchor="middle" fill="#1b5e20">Delay L</text>
+
+  <circle class="delay source" cx="8" cy="15" r="0.28" fill="#2a9d35" />
+  <text x="8" y="15.7" font-size="0.22" text-anchor="middle" fill="#1b5e20">Delay R</text>
+
+  <!-- Fundo -->
+  <text x="5" y="24.6" font-size="0.28" text-anchor="middle" fill="#213042" font-weight="700">FUNDO DO SALÃO</text>
+</svg>
+<div>
+  <button onclick="toggle('pa')">Ligar/Desligar PA</button>
+  <button onclick="toggle('sub')">Ligar/Desligar Sub</button>
+  <button onclick="toggle('delay')">Ligar/Desligar Delay</button>
+</div>
+
+<div class="legend">
+  <span><i class="dot blue"></i>PA principal</span>
+  <span><i class="dot red"></i>Subwoofer</span>
+  <span><i class="dot orange"></i>Retorno de palco</span>
+  <span><i class="dot green"></i>Delay / Fill</span>
+  <span><i class="dot gray"></i>Altar / Palco</span>
+</div>
+
+<script>
+const svg = document.getElementById("planta");
+let active = { pa:false, sub:false, delay:false };
+
+function toggle(type){
+  active[type] = !active[type];
+  if(active[type]){
+    startWaves(type);
+  } else {
+    document.querySelectorAll("."+type+".wave").forEach(w=>w.remove());
+  }
+}
+
+function startWaves(type){
+  const sources = document.querySelectorAll("."+type+".source");
+  sources.forEach(src=>{
+    const x = parseFloat(src.getAttribute("cx"));
+    const y = parseFloat(src.getAttribute("cy"));
+    animateWave(x,y,type);
+  });
+}
+
+function animateWave(x,y,type){
+  if(!active[type]) return;
+  const wave = document.createElementNS("http://www.w3.org/2000/svg","path");
+  wave.setAttribute("class", type+" wave");
+  wave.setAttribute("fill","none");
+  wave.setAttribute("stroke-width","0.05");
+  wave.setAttribute("stroke", type==="pa"?"blue":type==="sub"?"red":"green");
+  svg.appendChild(wave);
+
+  let radius = 0.1;
+  let opacity = 1;
+
+  function frame(){
+    const startX = x - radius;
+    const endX = x + radius;
+    const endY = y + radius;
+
+    // Semicírculo apontando para frente (para baixo no SVG)
+    const d = `M ${startX} ${y} A ${radius} ${radius} 0 0 0 ${endX} ${y}`;
+    wave.setAttribute("d", d);
+    wave.setAttribute("opacity", opacity);
+
+    radius += 0.2;
+    opacity -= 0.01;
+
+    if(opacity <= 0){
+      wave.remove();
+      if(active[type]) animateWave(x,y,type);
+    } else {
+      requestAnimationFrame(frame);
+    }
+  }
+  frame();
+}
+</script>
+
 </body>
 </html>
